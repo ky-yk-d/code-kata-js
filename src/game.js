@@ -1,9 +1,15 @@
 exports.game = function(){
-  this.m_score = 0;
+  this.rolls = new Array(21);
+  this.currentRoll = 0;
+
   this.roll = function(pins){
-    this.m_score += pins;
+    this.rolls[this.currentRoll++] = pins;
   };
   this.score = function(){
-    return this.m_score;
+    var score = 0;
+    this.rolls.forEach(roll => {
+      score += roll;
+    });
+    return score;
   };
 };
