@@ -11,6 +11,11 @@ describe('bowling game', function(){
         }
     };
 
+    var rollSpare = function(){
+        game.roll(5);
+        game.roll(5);
+    };
+
     beforeEach(function(){
         game = new module.game();
     });
@@ -25,11 +30,18 @@ describe('bowling game', function(){
         assert(game.score() === 20);
     });
         
-    // it ("スペアがあった場合は得点が加算される", function(){
-    //     game.roll(5);
-    //     game.roll(5);
-    //     game.roll(3);
-    //     rollMany(17, 0);
-    //     assert(game.score() === 16);
-    // });
+    it ("スペアがあった場合は得点が加算される", function(){
+        rollSpare();
+        game.roll(3);
+        rollMany(17, 0);
+        assert(game.score() === 16);
+    });
+
+    it ("ストライクがあった場合は得点が加算される", function(){
+        game.roll(10);
+        game.roll(3);
+        game.roll(4);
+        rollMany(17, 0);
+        assert(game.score() === 24);
+    });
 });
