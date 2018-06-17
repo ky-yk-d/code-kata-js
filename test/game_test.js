@@ -16,6 +16,10 @@ describe('bowling game', function(){
         game.roll(5);
     };
 
+    var rollStrike = function(){
+        game.roll(10);
+    };
+
     beforeEach(function(){
         game = new module.game();
     });
@@ -38,10 +42,15 @@ describe('bowling game', function(){
     });
 
     it ("ストライクがあった場合は得点が加算される", function(){
-        game.roll(10);
+        rollStrike();
         game.roll(3);
         game.roll(4);
         rollMany(17, 0);
         assert(game.score() === 24);
+    });
+
+    it("パーフェクトゲームは300点", function(){
+        rollMany(12, 10);
+        assert(game.score() === 300);
     });
 });
