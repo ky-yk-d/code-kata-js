@@ -11,7 +11,7 @@ exports.doors = function(){
     } else if (door === 1){
       return 0;
     } else {
-      throw new Error();
+      throw new Error('illegalArgument');
     }
   };
 

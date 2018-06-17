@@ -15,11 +15,15 @@ describe('100 doors', function(){
     assert(doors.getState().toString() === Array(100).fill(1).toString());
   });
 
-  it ("1つのドアをトグルする関数に0,1以外を渡すとエラー", function(){
+  it ("1つのドアをトグルする関数に0,1以外を渡すとエラー", () => {
+    let doors = new hundredDoorsSolver.doors();
     assert.throws(
-      function (){
-        let doors = new hundredDoorsSolver.doors();
+      () => {
         doors.toggleOne(2);
+      },
+      (error) => {
+        assert(error.message === 'illegalArgument');
+        return true;
       }
   )});
 });
