@@ -41,5 +41,5 @@ exports.game = function(){
 
   this.strikeBonus = function(frameIndex){
     return this.rolls[frameIndex+1] + this.rolls[frameIndex+2];
-  }
+  };
 };
