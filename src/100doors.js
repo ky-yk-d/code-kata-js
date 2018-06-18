@@ -17,8 +17,21 @@ exports.doors = function(){
 
   this.toggleAll = function(num){
     this.state = this.state.map(function(el, i){
-      return this.toggleOne(el);
+      if ((i + 1) % num === 0){
+        el = this.toggleOne(el);
+      }
+      return el;
     }, this);
+  };
+
+  this.getIndexesOfOpenDoors = function(){
+    let indexes = [];
+    this.state.map(function(el,i){
+      if (el === 1) {
+        indexes.push(i+1);
+      }
+    });
+    return indexes;
   };
 
 };
