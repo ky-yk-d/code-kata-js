@@ -1,11 +1,11 @@
 'use strict';
 
-exports.doors = function(){
+exports.doors = function(){ // ここはアローにするとコンストラクタとして扱ってもらえない
   this.state = Array(100).fill(0);
-  this.getState = function(){
+  this.getState = () => {
     return this.state;
   };
-  this.toggleOne = function(door){
+  this.toggleOne = (door) => {
     if (door === 0){
       return 1;
     } else if (door === 1){
@@ -15,18 +15,24 @@ exports.doors = function(){
     }
   };
 
-  this.toggleAll = function(num){
-    this.state = this.state.map(function(el, i){
-      if ((i + 1) % num === 0){
-        el = this.toggleOne(el);
-      }
-      return el;
-    }, this);
+  this.toggleAll = (num) => {
+    if (num < 1) {
+      throw new Error('illegalArgument');
+    }
+    this.state = this.state.map(
+      (el, i) => {
+        if ((i + 1) % num === 0){
+          el = this.toggleOne(el);
+        }
+        return el; //　トグルした結果を返す（新しい配列の各要素となる）
+      } // アローにしたのでthisのバインドが不要になった
+    ); 
   };
 
-  this.getIndexesOfOpenDoors = function(){
+  this.getIndexesOfOpenDoors = () => {
     let indexes = [];
-    this.state.map(function(el,i){
+    this.state.map(
+      (el,i) => {
       if (el === 1) {
         indexes.push(i+1);
       }
