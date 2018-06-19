@@ -1,4 +1,4 @@
-# mocha & power-assertでBowling Game Code Kata
+# mocha & power-assertでCode Kata
 
 ## 環境整備
 
