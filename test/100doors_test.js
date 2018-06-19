@@ -37,6 +37,18 @@ describe('100 doors', function(){
     assert(doors.getIndexesOfOpenDoors().toString() === intarray.toString()); 
   });
 
+  it ("初期状態から1~100回目のトグルを実行すると平方数番目のみ1", function(){
+    let doors = new hundredDoorsSolver.doors();
+    [...Array(100)].map((_, i)=>{
+      doors.toggleAll(i+1);
+    });
+    let intarray = [];
+    [...Array(10)].map((_,i)=>{
+      intarray.push((i+1)*(i+1));
+    });
+    assert(doors.getIndexesOfOpenDoors().toString() === intarray.toString());
+  })
+
   it ("初期状態に対して判定を実行すると空の配列が返される", function(){
     let doors = new hundredDoorsSolver.doors();
     assert(doors.getIndexesOfOpenDoors().length === 0);
