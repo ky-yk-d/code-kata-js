@@ -1,18 +1,20 @@
 'use strict';
 
-exports.Solver = function(){
+let isDivisor = (dividend, divisor) => {
+  return dividend % divisor === 0;
+}
 
-  this.findSmallestFactor = function(num){
+exports.findSmallestFactor = function(num){
     let possibleLargestFactor = Math.floor(Math.sqrt(num));
     for (let i = 2; i <= possibleLargestFactor; i++){
-      if (num % i === 0){
+      if (isDivisor(num, i)){
         return i;
       }
     }
     return 0;
   };
 
-  this.factorize = function(num){
+ exports.factorize = function(num){
     let result = [];
     let temp = num;
     while (true){
@@ -27,4 +29,3 @@ exports.Solver = function(){
     }
     return result;
   };
-};
